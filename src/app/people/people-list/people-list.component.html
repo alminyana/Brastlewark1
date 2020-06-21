@@ -1,0 +1,19 @@
+
+<!-- <div *ngIf="data">
+  <span *ngFor="let item of data.Brastlewark;">
+    <app-people-list-item [item]="item"></app-people-list-item>
+  </span>
+</div> -->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div *ngIf="data">
+  <span *ngFor="let item of data.Brastlewark;">
+    <app-people-list-item [item]="item"></app-people-list-item>
+  </span>
+</div>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <!-- <router-outlet></router-outlet> -->
+  </div>
+</div>
