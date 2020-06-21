@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { PeopleModule } from './people/people.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
