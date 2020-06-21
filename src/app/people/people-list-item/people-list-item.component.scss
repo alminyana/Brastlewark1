@@ -1,0 +1,18 @@
+
+.card-display {
+    display: inline-block;
+    max-height: 600px;
+    margin: .4em;
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        object-fit: cover;
+        height: 100%;
+        min-width: 100%;
+    }
+}
