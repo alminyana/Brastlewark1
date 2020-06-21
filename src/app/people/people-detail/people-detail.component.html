@@ -2,9 +2,18 @@
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div *ngIf="selectedItem" class="detail">
-      <span class="text-muted subtitle">
-        Name
-      </span>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <span class="text-muted subtitle">
+            Name
+          </span>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <!-- <button class="btn btn-xs float-right">
+            X
+          </button> -->
+        </div>
+      </div>
       <h3>
         {{selectedItem.name}}
       </h3>
@@ -24,18 +33,25 @@
         </span>
         {{selectedItem.hair_color}}
       </h4>
-      <h4>
-        <span class="text-muted subtitle">
-          Weight
-        </span>
-        <div>{{selectedItem.weight}}</div>
-      </h4>  
-      <h4>
-        <span class="text-muted subtitle">
-          Height
-        </span>
-        <div>{{selectedItem.height}}</div>
-      </h4>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <h4>
+            <span class="text-muted subtitle">
+              Weight
+            </span>
+            <div>{{selectedItem.weight | number: '1.0-0'}}</div>
+          </h4>  
+          
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+          <h4>
+            <span class="text-muted subtitle">
+              Height
+            </span>
+            <div>{{selectedItem.height | number: '1.0-0'}}</div>
+          </h4>
+        </div>
+      </div>
           
 
       <h4 *ngIf="selectedItem.friends.length > 0">
@@ -44,7 +60,7 @@
         </span>
         <ul class="list list-unstyled">
           <li *ngFor="let friend of selectedItem.friends">
-            <h5>{{friend}}</h5>
+            <h5 (click)="goToFriend(friend)">{{friend}}</h5>
           </li>
         </ul>
       </h4>
