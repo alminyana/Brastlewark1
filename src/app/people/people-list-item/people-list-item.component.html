@@ -1,6 +1,6 @@
 
 
-<div class="card card-display" routerLinkActive="active-item">
+<div class="card card-display" *ngIf="item" routerLinkActive="active-item">
   <div class="card-body">
     <a href="#" [routerLink]="[item.id]">
       <h5 class="card-title">{{item.name}}</h5>
