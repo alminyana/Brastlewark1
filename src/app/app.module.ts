@@ -6,6 +6,7 @@ import { PeopleModule } from './people/people.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HistoryComponent } from './history/history.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HistoryComponent } from './history/history.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     PeopleModule,
   ],
