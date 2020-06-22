@@ -5,10 +5,13 @@ import { PeopleListItemComponent } from '../people-list-item/people-list-item.co
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { PeopleListService } from './services/people-list.service';
 
 describe('PeopleListComponent', () => {
   let component: PeopleListComponent;
   let fixture: ComponentFixture<PeopleListComponent>;
+  let service;
+  let services;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -16,15 +19,35 @@ describe('PeopleListComponent', () => {
       declarations: [ PeopleListComponent, PeopleListItemComponent ]
     })
     .compileComponents();
+
+    initServices();
+    fixture = TestBed.createComponent(PeopleListComponent);
+    component = fixture.componentInstance;
+    service = TestBed.get(PeopleListService, null);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PeopleListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    initServices();
+    fixture = TestBed.createComponent(PeopleListComponent);
+    component = fixture.componentInstance;
+    service = TestBed.get(PeopleListService, null);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should exist correct service in constructor when component is initialized', () => {
+    expect(component.srv).toEqual(services.srv);
+});
+
+  function initServices() {
+    services = {
+        srv: TestBed.get(PeopleListService),
+    };
+}
 });

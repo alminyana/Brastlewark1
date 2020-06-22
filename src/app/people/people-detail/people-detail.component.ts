@@ -27,10 +27,6 @@ export class PeopleDetailComponent implements OnInit {
     this.allItems = items[BRASTLEWARK];
     const selected = this.allItems.filter((one) => one.name === friend);
 
-    console.log('selected::', selected[0]);
-
-    // this.router.navigate(['people', { id: selected[0].id }]);
-    // this.router.navigateByUrl(['people/', + selected[0].id]);
   }
 
   getDetailById(): void {
