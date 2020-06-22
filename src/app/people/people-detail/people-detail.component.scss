@@ -1,0 +1,13 @@
+span.subtitle {
+    font-size: 17px;
+}
+
+.photo-detail {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    img {
+        object-fit: cover;
+    }
+}
+

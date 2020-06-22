@@ -4,7 +4,19 @@
     max-height: 300px;
     margin: .4em;
     width: 15em;
+    a {
+        text-decoration: none;
+    }
+}
 
+a:hover {
+    .card-title {
+        color: darkred;
+    }
+}
+
+.card-display:hover {
+    background-color:rgba(200, 200, 200, .3);
 }
 
 .photo {
@@ -16,5 +28,12 @@
         object-fit: cover;
         height: 100%;
         min-width: 100%;
+    }
+}
+
+.active-item {
+    background-color: lightgrey;
+    .card-title {
+        color: darkred;
     }
 }
