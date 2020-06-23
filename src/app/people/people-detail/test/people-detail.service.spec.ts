@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PeopleDetailService } from './people-detail.service';
+import { PeopleDetailService } from '../people-detail.service';
 import { HttpClientModule } from '@angular/common/http';
-import { PeopleListRemoteService } from '../people-list/services/people-list-remote.service';
+import { PeopleListRemoteService } from '../../people-list/services/people-list-remote.service';
 
 describe('PeopleDetailService', () => {
   let services;

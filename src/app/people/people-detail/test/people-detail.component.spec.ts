@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeopleDetailComponent } from './people-detail.component';
+import { PeopleDetailComponent } from '../people-detail.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { PeopleDetailService } from './people-detail.service';
+import { PeopleDetailService } from '../people-detail.service';
+import { PeopleDetailServiceMock } from './people-detail.service.mock';
 
 describe('PeopleDetailComponent', () => {
   let component: PeopleDetailComponent;
@@ -15,7 +16,13 @@ describe('PeopleDetailComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, RouterModule, HttpClientModule ],
-      declarations: [ PeopleDetailComponent ]
+      declarations: [ PeopleDetailComponent ],
+      providers: [
+        {
+          provide: PeopleDetailService,
+          useClass: PeopleDetailServiceMock,
+      }
+      ],
     })
     .compileComponents();
 
