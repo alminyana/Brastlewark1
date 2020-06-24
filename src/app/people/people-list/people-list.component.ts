@@ -20,7 +20,6 @@ export class PeopleListComponent implements OnInit {
 
   async ngOnInit() {
     this.data = await this.srv.getData();
-    console.log(this.data);
   }
 
   public updateMode() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PeopleDetailService } from './people-detail.service';
+import { ID, BRASTLEWARK } from '../constant/people-list-constant';
 
 @Component({
   selector: 'app-people-detail',
@@ -9,15 +10,12 @@ import { PeopleDetailService } from './people-detail.service';
 })
 export class PeopleDetailComponent implements OnInit {
 
-  public selectedItem = undefined;
-  public allItems = undefined;
-  private id = 'id';
-  private brastlewark = 'Brastlewark';
+  public selectedItem;
+  public allItems;
 
   constructor(
     private route: ActivatedRoute,
-    private srv: PeopleDetailService,
-    private router: Router
+    private srv: PeopleDetailService
   ) { }
 
   ngOnInit() {
@@ -26,13 +24,9 @@ export class PeopleDetailComponent implements OnInit {
 
   async goToFriend(friend) {
     const items = await this.srv.getData();
-    this.allItems = items[this.brastlewark];
+    this.allItems = items[BRASTLEWARK];
     const selected = this.allItems.filter((one) => one.name === friend);
 
-    console.log('selected::', selected[0]);
-
-    // this.router.navigate(['people', { id: selected[0].id }]);
-    // this.router.navigateByUrl(['people/', + selected[0].id]);
   }
 
   getDetailById(): void {
@@ -41,10 +35,9 @@ export class PeopleDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         async (params: Params) => {
-          const items = await this.srv.getItemById(+params[this.id]);
+          const items = await this.srv.getItemById(+params[ID]);
 
           this.selectedItem = items;
-          console.log(this.selectedItem);
         }
       );
   }

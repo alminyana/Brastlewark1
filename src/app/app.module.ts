@@ -7,11 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HistoryComponent } from './history/history.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     HistoryComponent
   ],
   imports: [
@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
     PeopleModule,
+    HeaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
