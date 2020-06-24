@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 import { PeopleListRemoteService } from './people-list-remote.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -22,7 +22,10 @@ describe('PeopleListRemoteService', () => {
 
   it('should exist httpClient service in constructor when service is initialized', () => {
     const service: PeopleListRemoteService = TestBed.get(PeopleListRemoteService);
-    expect(service.http).toEqual(services.http);
+
+    inject([PeopleListRemoteService], (injectedServ: PeopleListRemoteService) => {
+      expect(injectedServ).toBe(service);
+    });
   });
 
   it('should call httpClient service when getData method is fired', () => {

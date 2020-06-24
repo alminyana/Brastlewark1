@@ -38,7 +38,6 @@ export class PeopleDetailComponent implements OnInit {
           const items = await this.srv.getItemById(+params[ID]);
 
           this.selectedItem = items;
-          console.log(this.selectedItem);
         }
       );
   }

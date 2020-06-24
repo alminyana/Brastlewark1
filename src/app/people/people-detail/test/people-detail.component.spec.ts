@@ -23,32 +23,38 @@ describe('PeopleDetailComponent', () => {
           useClass: PeopleDetailServiceMock,
       }
       ],
-    })
-    .compileComponents();
+    });
+    TestBed.compileComponents();
+    service = TestBed.get(PeopleDetailService, null);
 
     initServices();
     fixture = TestBed.createComponent(PeopleDetailComponent);
     component = fixture.componentInstance;
-    service = TestBed.get(PeopleDetailService, null);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PeopleDetailComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
 
     initServices();
-    fixture = TestBed.createComponent(PeopleDetailComponent);
-    component = fixture.componentInstance;
     service = TestBed.get(PeopleDetailService, null);
+    component = fixture.componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should exist correct service in constructor when component is initialized', () => {
-      expect(component.srv).toEqual(services.srv);
+  it('should call getDetailById on component instance', () => {
+    spyOn(component, 'getDetailById')
+    .and
+    .callThrough();
+
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.getDetailById).toHaveBeenCalled();
+
   });
 
   function initServices() {

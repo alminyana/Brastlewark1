@@ -1,14 +1,22 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import { PeopleDetailService } from '../people-detail.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PeopleDetailService } from '../people-detail.service';
+import { PeopleListService } from '../../people-list/services/people-list.service';
 import { PeopleListRemoteService } from '../../people-list/services/people-list-remote.service';
+import { PeopleListRemoteServiceMock } from '../../people-list/services/people-list-remote.service.mock';
 
 describe('PeopleDetailService', () => {
   let services;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule ]
+      imports: [ HttpClientModule ],
+      providers: [
+        {
+          provide: PeopleListRemoteService,
+          useClass: PeopleListRemoteServiceMock,
+      }
+      ],
     });
 
     initServices();
@@ -21,8 +29,11 @@ describe('PeopleDetailService', () => {
   });
 
   it('should exist correct service in constructor when service is initialized', () => {
-      const service: PeopleDetailService = TestBed.get(PeopleDetailService);
-      expect(service.remote).toEqual(services.remote);
+    const serv: PeopleDetailService = TestBed.get(PeopleDetailService);
+
+    inject([PeopleDetailService], (injectedServ: PeopleDetailService) => {
+      expect(injectedServ).toBe(serv);
+    });
   });
 
   function initServices() {

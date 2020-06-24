@@ -41,8 +41,15 @@ describe('PeopleListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should exist correct service in constructor when component is initialized', () => {
-    expect(component.srv).toEqual(services.srv);
+  it('should service call getData method when component is initialized', () => {
+    spyOn(service, 'getData')
+    .and
+    .callThrough();
+
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(service.getData).toHaveBeenCalled();
 });
 
   function initServices() {
