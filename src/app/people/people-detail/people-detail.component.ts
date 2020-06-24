@@ -15,6 +15,7 @@ export class PeopleDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private srv: PeopleDetailService
   ) { }
 
@@ -27,6 +28,10 @@ export class PeopleDetailComponent implements OnInit {
     this.allItems = items[BRASTLEWARK];
     const selected = this.allItems.filter((one) => one.name === friend);
 
+  }
+
+  goToList() {
+    this.router.navigateByUrl('people');
   }
 
   getDetailById(): void {
