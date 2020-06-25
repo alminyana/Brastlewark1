@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleListService } from './services/people-list.service';
 import { BrastlewarkItem } from '../model/brastlewark-item.interface';
 import { Router } from '@angular/router';
+import { prependOnceListener } from 'process';
 
 @Component({
   selector: 'app-people-list',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class PeopleListComponent implements OnInit {
 
-  public data;
+  public filteredData: BrastlewarkItem[];
+  private data: BrastlewarkItem[];
   public listMode = true;
 
   constructor(
@@ -20,11 +22,19 @@ export class PeopleListComponent implements OnInit {
 
   async ngOnInit() {
     this.data = await this.srv.getData();
-    console.log(this.data);
+    this.filteredData = this.data;
   }
 
   public updateMode() {
     this.listMode = false;
+  }
+
+  filterNoItems(search) {
+    this.filteredData = this.data.filter((person) => person[search].length === 0 || !person[search]);
+  }
+
+  filterWithItems(search) {
+    this.filteredData = this.data.filter((person) => person[search].length > 0);
   }
 
   public goToList() {

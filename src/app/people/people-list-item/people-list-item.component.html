@@ -1,6 +1,6 @@
 
 
-<div class="card card-display" routerLinkActive="active-item">
+<div class="card card-display" *ngIf="item" routerLinkActive="active-item">
   <div class="card-body">
     <a href="#" [routerLink]="[item.id]">
       <h5 class="card-title">{{item.name}}</h5>
@@ -9,7 +9,20 @@
       <div class="photo">
         <img class="" src="{{item.thumbnail}}" alt="Thumbnail">
       </div>
-
+      <h6 class="friends">
+        <span
+          class="badge"
+          [ngClass]="{'badge-success' : item.friends.length > 0, 'badge-warning' : item.friends.length === 0}">
+                Friends {{item.friends.length}}
+        </span>
+      </h6>
+      <h6 class="friends">
+        <span
+          class="badge"
+          [ngClass]="{'badge-primary' : item.professions.length > 0, 'badge-secondary' : item.professions.length === 0}">
+            Professions {{item.professions.length}} 
+        </span>
+      </h6>
     </a>
   </div>
 </div>

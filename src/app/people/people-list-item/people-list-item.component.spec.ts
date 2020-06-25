@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PeopleListItemComponent } from './people-list-item.component';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PeopleListItemComponent', () => {
   let component: PeopleListItemComponent;
@@ -8,6 +10,7 @@ describe('PeopleListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule, RouterModule ],
       declarations: [ PeopleListItemComponent ]
     })
     .compileComponents();
@@ -20,6 +23,7 @@ describe('PeopleListItemComponent', () => {
   });
 
   it('should create', () => {
+
     expect(component).toBeTruthy();
   });
 });
