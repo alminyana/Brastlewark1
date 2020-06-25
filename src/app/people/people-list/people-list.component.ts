@@ -18,8 +18,6 @@ export class PeopleListComponent implements OnInit {
   private data: BrastlewarkItem[];
   public listMode = true;
   public filtered$: Observable<BrastlewarkItem[]>;
-  public filteredOK$: Observable<BrastlewarkItem[]>;
-
 
   constructor(
     private srv: PeopleListService,

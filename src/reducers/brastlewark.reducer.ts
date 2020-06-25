@@ -22,6 +22,8 @@ export function reducer(state: BrastlewarkItem[] = initialState, action: Actions
             return [...action.payload];
         case Actions.FILTER_LIST:
             return [...action.payload.filter( (item) => action.items ? item[action.prop].length > 0 : item[action.prop].length === 0)];
+        case Actions.GET_BY_ID:
+                return [...state.filter( (item) => item.id === action.id )];
         default:
             return state;
     }
