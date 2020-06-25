@@ -13,12 +13,18 @@ const initialState: BrastlewarkItem[] = [
         professions: ['Metalworker', 'Woodcarver', 'Stonecarver', 'Tinker', 'Tailor', 'Potter'],
         thumbnail: 'http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg',
         weight: 39.065952
-}
+    }
 ];
 
 export function reducer(state: BrastlewarkItem[] = initialState, action: Actions.Actions) {
-    switch(action.type) {
+    switch (action.type) {
         case Actions.NEW_LIST:
+            return [...action.payload];
+        case Actions.FILTER_EMPTY_LIST:
+            return [...action.payload.filter( (item) => item[action.prop].length === 0)];
+        case Actions.FILTER_FULL_LIST:
+                return [...action.payload.filter( (item) => item[action.prop].length > 0)];
+        case Actions.GET_LIST:
             return [...action.payload];
         default:
             return state;

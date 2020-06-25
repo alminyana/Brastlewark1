@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleListService } from './services/people-list.service';
 import { BrastlewarkItem } from '../model/brastlewark-item.interface';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { AppState } from '../../app.state';
 import { Store } from '@ngrx/store';
-import { filter } from 'rxjs/operators';
-
+import * as ListActions from '../../../actions/brastlewark.actions';
 
 @Component({
   selector: 'app-people-list',
@@ -19,6 +19,8 @@ export class PeopleListComponent implements OnInit {
   private data: BrastlewarkItem[];
   public listMode = true;
   public filtered$: Observable<BrastlewarkItem[]>;
+  public filteredOK$: Observable<BrastlewarkItem[]>;
+
 
   constructor(
     private srv: PeopleListService,
@@ -38,12 +40,16 @@ export class PeopleListComponent implements OnInit {
     this.listMode = false;
   }
 
+  clearFilter() {
+    this.store.dispatch(new ListActions.GetList(this.data));
+  }
+
   filterNoItems(search) {
-    this.filteredData = this.data.filter((person) => person[search].length === 0 || !person[search]);
+    this.store.dispatch(new ListActions.FilterEmptyList(search, this.data));
   }
 
   filterWithItems(search) {
-    this.filteredData = this.data.filter((person) => person[search].length > 0);
+    this.store.dispatch(new ListActions.FilterFullList(search, this.data));
   }
 
   public goToList() {
