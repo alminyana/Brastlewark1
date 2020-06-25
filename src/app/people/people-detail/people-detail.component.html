@@ -1,79 +1,78 @@
-
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div *ngIf="selectedItem" class="detail">
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div *ngIf="selectedItem" class="detail">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <span class="text-muted subtitle">
+              Name
+            </span>
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2">
+            <button type="button" (click)="goToList()" class="btn btn-outline-danger">X</button>
+          </div>
+        </div>
+        <h3>
+          {{selectedItem.name}}
+        </h3>
+  
+        <div class="photo-detail">
+          <img class="rounded" src="{{selectedItem.thumbnail}}" alt="thumbnail">
+        </div>
+  
+        <h4>
+         <span class="text-muted subtitle">
+           Age
+         </span> {{selectedItem.age}}
+        </h4>
+        <h4>
           <span class="text-muted subtitle">
-            Name
+            Hair color
           </span>
+          {{selectedItem.hair_color}}
+        </h4>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h4>
+              <span class="text-muted subtitle">
+                Weight
+              </span>
+              <div>{{selectedItem.weight | number: '1.0-0'}}</div>
+            </h4>  
+            
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h4>
+              <span class="text-muted subtitle">
+                Height
+              </span>
+              <div>{{selectedItem.height | number: '1.0-0'}}</div>
+            </h4>
+          </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6">
-          <!-- <button class="btn btn-xs float-right">
-            X
-          </button> -->
-        </div>
+            
+  
+        <h4 *ngIf="selectedItem.friends.length > 0">
+          <span class="text-muted subtitle">
+            Friends
+          </span>
+          <ul class="list list-unstyled">
+            <li *ngFor="let friend of selectedItem.friends">
+              <h5 (click)="goToFriend(friend)">{{friend}}</h5>
+            </li>
+          </ul>
+        </h4>
+        <h4 *ngIf="selectedItem.professions.length > 0">
+          <span class="text-muted subtitle">
+            Professions
+          </span>
+          <ul class="list list-unstyled">
+            <li *ngFor="let profession of selectedItem.professions">
+              <h5>{{profession}}</h5>
+            </li>
+          </ul>
+        </h4>
       </div>
-      <h3>
-        {{selectedItem.name}}
-      </h3>
-
-      <div class="photo-detail">
-        <img class="rounded" src="{{selectedItem.thumbnail}}" alt="thumbnail">
-      </div>
-
-      <h4>
-       <span class="text-muted subtitle">
-         Age
-       </span> {{selectedItem.age}}
-      </h4>
-      <h4>
-        <span class="text-muted subtitle">
-          Hair color
-        </span>
-        {{selectedItem.hair_color}}
-      </h4>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-          <h4>
-            <span class="text-muted subtitle">
-              Weight
-            </span>
-            <div>{{selectedItem.weight | number: '1.0-0'}}</div>
-          </h4>  
-          
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-          <h4>
-            <span class="text-muted subtitle">
-              Height
-            </span>
-            <div>{{selectedItem.height | number: '1.0-0'}}</div>
-          </h4>
-        </div>
-      </div>
-          
-
-      <h4 *ngIf="selectedItem.friends.length > 0">
-        <span class="text-muted subtitle">
-          Friends
-        </span>
-        <ul class="list list-unstyled">
-          <li *ngFor="let friend of selectedItem.friends">
-            <h5 (click)="goToFriend(friend)">{{friend}}</h5>
-          </li>
-        </ul>
-      </h4>
-      <h4 *ngIf="selectedItem.professions.length > 0">
-        <span class="text-muted subtitle">
-          Professions
-        </span>
-        <ul class="list list-unstyled">
-          <li *ngFor="let profession of selectedItem.professions">
-            <h5>{{profession}}</h5>
-          </li>
-        </ul>
-      </h4>
     </div>
   </div>
 </div>

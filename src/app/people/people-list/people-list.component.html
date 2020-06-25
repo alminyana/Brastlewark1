@@ -1,5 +1,4 @@
-
-<div *ngIf="!listMode" class="row">
+<!-- <div *ngIf="!listMode" class="row">
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div *ngIf="data">
       <span *ngFor="let item of data.Brastlewark;">
@@ -17,12 +16,24 @@
     </div>
     <router-outlet></router-outlet>
   </div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="filter">
+        <button type="button" (click)="filterNoItems('friends')" class="btn btn-outline-primary">No Friends</button>
+        <button type="button" (click)="filterWithItems('friends')" class="btn btn-outline-primary">With Friends</button>
+        <button type="button" (click)="filterNoItems('professions')" class="btn btn-outline-success">No Professions</button>
+        <button type="button" (click)="filterWithItems('professions')" class="btn btn-outline-success">With Professions</button>        
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="listMode" class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div *ngIf="data">
-      <span *ngFor="let item of data.Brastlewark;">
+    <div *ngIf="filteredData">
+      <span *ngFor="let item of filteredData;">
         <app-people-list-item (click)="updateMode()" [item]="item"></app-people-list-item>
       </span>
     </div>
