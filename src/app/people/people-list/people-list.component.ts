@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleListService } from './services/people-list.service';
 import { BrastlewarkItem } from '../model/brastlewark-item.interface';
 import { Router } from '@angular/router';
-import { prependOnceListener } from 'process';
+import { Observable } from 'rxjs';
+import { AppState } from '../../app.state';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-people-list',
@@ -14,11 +18,16 @@ export class PeopleListComponent implements OnInit {
   public filteredData: BrastlewarkItem[];
   private data: BrastlewarkItem[];
   public listMode = true;
+  public filtered$: Observable<BrastlewarkItem[]>;
 
   constructor(
     private srv: PeopleListService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private store: Store<AppState>
+  ) {
+    this.filtered$ = this.store.select('list');
+    console.log('filtered$', this.filtered$);
+  }
 
   async ngOnInit() {
     this.data = await this.srv.getData();
