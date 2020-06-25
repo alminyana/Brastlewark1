@@ -20,12 +20,8 @@ export function reducer(state: BrastlewarkItem[] = initialState, action: Actions
     switch (action.type) {
         case Actions.NEW_LIST:
             return [...action.payload];
-        case Actions.FILTER_EMPTY_LIST:
-            return [...action.payload.filter( (item) => item[action.prop].length === 0)];
-        case Actions.FILTER_FULL_LIST:
-                return [...action.payload.filter( (item) => item[action.prop].length > 0)];
-        case Actions.GET_LIST:
-            return [...action.payload];
+        case Actions.FILTER_LIST:
+            return [...action.payload.filter( (item) => action.items ? item[action.prop].length > 0 : item[action.prop].length === 0)];
         default:
             return state;
     }

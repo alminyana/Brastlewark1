@@ -15,7 +15,6 @@ import * as ListActions from '../../../actions/brastlewark.actions';
 })
 export class PeopleListComponent implements OnInit {
 
-  public filteredData: BrastlewarkItem[];
   private data: BrastlewarkItem[];
   public listMode = true;
   public filtered$: Observable<BrastlewarkItem[]>;
@@ -28,32 +27,17 @@ export class PeopleListComponent implements OnInit {
     private store: Store<AppState>
   ) {
     this.filtered$ = this.store.select('list');
-    console.log('filtered$', this.filtered$);
   }
 
   async ngOnInit() {
     this.data = await this.srv.getData();
-    this.filteredData = this.data;
-  }
-
-  public updateMode() {
-    this.listMode = false;
   }
 
   clearFilter() {
-    this.store.dispatch(new ListActions.GetList(this.data));
+    this.store.dispatch(new ListActions.NewList(this.data));
   }
 
-  filterNoItems(search) {
-    this.store.dispatch(new ListActions.FilterEmptyList(search, this.data));
-  }
-
-  filterWithItems(search) {
-    this.store.dispatch(new ListActions.FilterFullList(search, this.data));
-  }
-
-  public goToList() {
-    this.listMode = true;
-    this.router.navigateByUrl('people');
+  filterItems(search, items) {
+    this.store.dispatch(new ListActions.FilterList(search, items, this.data));
   }
 }
