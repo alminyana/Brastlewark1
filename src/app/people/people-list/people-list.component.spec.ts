@@ -6,6 +6,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleListService } from './services/people-list.service';
+import { StoreModule, Store } from '@ngrx/store';
+import { reducer } from '../../../reducers/brastlewark.reducer';
 
 describe('PeopleListComponent', () => {
   let component: PeopleListComponent;
@@ -15,7 +17,10 @@ describe('PeopleListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, RouterModule, HttpClientModule ],
+      imports: [ RouterTestingModule, RouterModule, HttpClientModule, StoreModule.forRoot({
+        list: reducer
+      }) ],
+      providers: [ Store ],
       declarations: [ PeopleListComponent, PeopleListItemComponent ]
     })
     .compileComponents();
