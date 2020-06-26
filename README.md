@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Summary
 
-### Tech summary
+### Technologies
 
 Angular CLI: 7.3.10 | 
 Node: 10.16.3 | 
