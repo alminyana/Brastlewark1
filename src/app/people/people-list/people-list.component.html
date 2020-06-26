@@ -3,10 +3,10 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="filter">
-        <button type="button" (click)="filterItems('friends', false)" class="btn btn-outline-primary">No Friends</button>
         <button type="button" (click)="filterItems('friends', true)" class="btn btn-outline-primary">With Friends</button>
-        <button type="button" (click)="filterItems('professions', false)" class="btn btn-outline-success">No Professions</button>
         <button type="button" (click)="filterItems('professions', true)" class="btn btn-outline-success">With Professions</button>
+        <button type="button" (click)="filterItems('friends', false)" class="btn btn-outline-primary">No Friends</button>
+        <button type="button" (click)="filterItems('professions', false)" class="btn btn-outline-success">No Professions</button>
         <button type="button" (click)="clearFilter()" class="btn btn-outline-danger">Clear filter</button>        
         
       </div>
