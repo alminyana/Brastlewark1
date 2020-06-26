@@ -7,9 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { PeopleDetailService } from '../people-detail.service';
 import { PeopleDetailServiceMock } from './people-detail.service.mock';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { initialState } from '../../../../reducers/brastlewark.reducer';
-import { Store } from '@ngrx/store';
+import { initialState, reducer } from '../../../../reducers/brastlewark.reducer';
+import { Store, StoreModule } from '@ngrx/store';
 import { EventEmitter } from 'events';
+import { Pipe, PipeTransform } from '@angular/core';
 
 describe('PeopleDetailComponent', () => {
   let component: PeopleDetailComponent;
@@ -23,15 +24,17 @@ describe('PeopleDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, RouterModule, HttpClientModule ],
+      imports: [ RouterTestingModule, RouterModule, HttpClientModule, StoreModule.forRoot({
+        list: reducer
+      })],
       declarations: [ PeopleDetailComponent ],
       providers: [
         Store,
-        provideMockStore({ initialState }),
-        {
-          provide: Store,
-          useValue: storeMock,
-        },
+        // provideMockStore({ initialState }),
+        // {
+        //   provide: Store,
+        //   useValue: storeMock,
+        // },
         {
           provide: PeopleDetailService,
           useClass: PeopleDetailServiceMock,
