@@ -1,30 +1,14 @@
-<!-- <div *ngIf="!listMode" class="row">
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div *ngIf="data">
-      <span *ngFor="let item of data.Brastlewark;">
-        <app-people-list-item (click)="updateMode()" [item]="item"></app-people-list-item>
-      </span>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div class="row">
-      <div class="col-xs-11 col-md-10 col-sm-9 col-lg-9">
-        <button (click)="goToList()" type="button" class="btn btn-light back-button float-right">
-          Back to list
-        </button>
-      </div>
-    </div>
-    <router-outlet></router-outlet>
-  </div>
-</div> -->
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="filter">
-        <button type="button" (click)="filterNoItems('friends')" class="btn btn-outline-primary">No Friends</button>
-        <button type="button" (click)="filterWithItems('friends')" class="btn btn-outline-primary">With Friends</button>
-        <button type="button" (click)="filterNoItems('professions')" class="btn btn-outline-success">No Professions</button>
-        <button type="button" (click)="filterWithItems('professions')" class="btn btn-outline-success">With Professions</button>        
+        <button type="button" (click)="filterItems('friends', false)" class="btn btn-outline-primary">No Friends</button>
+        <button type="button" (click)="filterItems('friends', true)" class="btn btn-outline-primary">With Friends</button>
+        <button type="button" (click)="filterItems('professions', false)" class="btn btn-outline-success">No Professions</button>
+        <button type="button" (click)="filterItems('professions', true)" class="btn btn-outline-success">With Professions</button>
+        <button type="button" (click)="clearFilter()" class="btn btn-outline-danger">Clear filter</button>        
+        
       </div>
     </div>
   </div>
@@ -32,10 +16,18 @@
 
 <div *ngIf="listMode" class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div *ngIf="filteredData">
+    <div *ngIf="filtered$">
+      <h3>From Store</h3>
+      <span *ngFor="let item of filtered$ | async">
+        <app-people-list-item [item]="item"></app-people-list-item>
+      </span>
+    </div>
+    
+    <!-- <div *ngIf="filteredData">
+      <h3>From public API</h3>
       <span *ngFor="let item of filteredData;">
         <app-people-list-item (click)="updateMode()" [item]="item"></app-people-list-item>
       </span>
-    </div>
+    </div> -->
   </div>
 </div>
