@@ -6,6 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Summary
+
+I have tryed to achieve all technical requirements except to cache the image url.
+I didn't have experience working with Redux at my job position, but I implemented a basic structure of Redux in the app, passing the new state to store with Actions and Reducers and subscribing the component to the store in order to show the data.
+I faced several errors in Unit test when I added store service to components or services, some of them aren't solved because i didn't have much time.
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
