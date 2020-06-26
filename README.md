@@ -15,12 +15,11 @@ Node: 10.16.3 |
 OS: linux x64 | 
 Angular: 7.2.16
 
-The main branch with all the changes is 'master' which is a copy of 'develop' branch.
+The main branch with all the changes is 'master' which is a copy of 'develop'. Develop is the branch where the feature/TD branches are merged.
 
-I have tryed to achieve all technical requirements except to cache the image url because I am out of time.
-I didn't have experience working with Redux at my job position, so I implemented a basic structure of Redux in the app, passing the new state to store with Actions and Reducers and subscribing the component to the store in order to show the data.
-I faced several errors in Unit test when I added store service to components or services, some of them aren't solved because i didn't have much time.
-
+I have tryed to achieve all technical requirements except to cache the image url.
+I didn't have experience working with Redux at my job position, so I implemented a basic structure of Redux in the app, passing the new state to the Store service with Actions and Reducers and subscribing the component to the Store in order to get the data to show.
+I faced several errors in Unit test when I added store service to components or services, the main problem is to mock the Store to run the spec.
 
 ## Code scaffolding
 
