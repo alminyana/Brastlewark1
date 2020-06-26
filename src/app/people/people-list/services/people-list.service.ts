@@ -17,13 +17,19 @@ export class PeopleListService {
   ) { }
 
   public async getData() {
-    const data = await this.remote.getData();
+    if (!this.data) {
+      const data = await this.remote.getData();
 
-    this.data = data[BRASTLEWARK];
+      this.data = data[BRASTLEWARK];
 
-    this.store.dispatch(new ListActions.NewList(this.data));
+      this.store.dispatch(new ListActions.NewList(this.data));
 
-    return data[BRASTLEWARK];
+      return this.data;
+    } else {
+      this.store.dispatch(new ListActions.NewList(this.data));
+
+      return this.data;
+    }
   }
 
 }
