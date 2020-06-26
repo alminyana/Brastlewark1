@@ -30,11 +30,6 @@ describe('PeopleDetailComponent', () => {
       declarations: [ PeopleDetailComponent ],
       providers: [
         Store,
-        // provideMockStore({ initialState }),
-        // {
-        //   provide: Store,
-        //   useValue: storeMock,
-        // },
         {
           provide: PeopleDetailService,
           useClass: PeopleDetailServiceMock,
