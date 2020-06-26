@@ -3,6 +3,8 @@ import { TestBed, inject } from '@angular/core/testing';
 import { PeopleListService } from './people-list.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleListRemoteService } from './people-list-remote.service';
+import { StoreModule, Store } from '@ngrx/store';
+import { reducer } from '../../../../reducers/brastlewark.reducer';
 
 describe('PeopleListService', () => {
   let services;
@@ -11,7 +13,8 @@ describe('PeopleListService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientModule ],
+      imports: [ HttpClientModule, StoreModule.forRoot({ list: reducer }) ],
+      providers: [ Store ],
     });
 
     initServices();
