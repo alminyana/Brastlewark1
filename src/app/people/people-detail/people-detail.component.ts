@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PeopleDetailService } from './people-detail.service';
 import { ID, BRASTLEWARK } from '../constant/people-list-constant';
+import { AppState } from '../../app.state';
+import { Store } from '@ngrx/store';
+import * as ListActions from '../../../actions/brastlewark.actions';
+import { BrastlewarkItem } from '../model/brastlewark-item.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-people-detail',
@@ -10,24 +15,19 @@ import { ID, BRASTLEWARK } from '../constant/people-list-constant';
 })
 export class PeopleDetailComponent implements OnInit {
 
-  public selectedItem;
-  public allItems;
+  public selectedItem$: Observable<BrastlewarkItem[]>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private srv: PeopleDetailService
-  ) { }
+    private srv: PeopleDetailService,
+    private store: Store<AppState>
+  ) {
+    this.selectedItem$ = this.store.select('list');
+  }
 
   ngOnInit() {
     this.getDetailById();
-  }
-
-  async goToFriend(friend) {
-    const items = await this.srv.getData();
-    this.allItems = items[BRASTLEWARK];
-    const selected = this.allItems.filter((one) => one.name === friend);
-
   }
 
   goToList() {
@@ -35,14 +35,10 @@ export class PeopleDetailComponent implements OnInit {
   }
 
   getDetailById(): void {
-    this.selectedItem = undefined;
-
     this.route.params
       .subscribe(
         async (params: Params) => {
-          const items = await this.srv.getItemById(+params[ID]);
-
-          this.selectedItem = items;
+          this.store.dispatch(new ListActions.GetById(+params[ID]));
         }
       );
   }

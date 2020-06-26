@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleListService } from './services/people-list.service';
 import { BrastlewarkItem } from '../model/brastlewark-item.interface';
 import { Router } from '@angular/router';
-import { prependOnceListener } from 'process';
+import { Observable, pipe } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { AppState } from '../../app.state';
+import { Store } from '@ngrx/store';
+import * as ListActions from '../../../actions/brastlewark.actions';
 
 @Component({
   selector: 'app-people-list',
@@ -11,34 +15,28 @@ import { prependOnceListener } from 'process';
 })
 export class PeopleListComponent implements OnInit {
 
-  public filteredData: BrastlewarkItem[];
   private data: BrastlewarkItem[];
   public listMode = true;
+  public filtered$: Observable<BrastlewarkItem[]>;
 
   constructor(
     private srv: PeopleListService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private store: Store<AppState>
+  ) {
+    this.filtered$ = this.store.select('list');
+    // this.store.select('list').subscribe((data) => console.log(data) );
+  }
 
   async ngOnInit() {
     this.data = await this.srv.getData();
-    this.filteredData = this.data;
   }
 
-  public updateMode() {
-    this.listMode = false;
+  clearFilter() {
+    this.store.dispatch(new ListActions.NewList(this.data));
   }
 
-  filterNoItems(search) {
-    this.filteredData = this.data.filter((person) => person[search].length === 0 || !person[search]);
-  }
-
-  filterWithItems(search) {
-    this.filteredData = this.data.filter((person) => person[search].length > 0);
-  }
-
-  public goToList() {
-    this.listMode = true;
-    this.router.navigateByUrl('people');
+  filterItems(search, items) {
+    this.store.dispatch(new ListActions.FilterList(search, items, this.data));
   }
 }

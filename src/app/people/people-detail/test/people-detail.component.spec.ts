@@ -6,18 +6,32 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleDetailService } from '../people-detail.service';
 import { PeopleDetailServiceMock } from './people-detail.service.mock';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { initialState } from '../../../../reducers/brastlewark.reducer';
+import { Store } from '@ngrx/store';
+import { EventEmitter } from 'events';
 
 describe('PeopleDetailComponent', () => {
   let component: PeopleDetailComponent;
   let fixture: ComponentFixture<PeopleDetailComponent>;
   let services;
   let service;
+  const storeMock = {
+    select: () => new EventEmitter(),
+    dispatch: () => new EventEmitter()
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, RouterModule, HttpClientModule ],
       declarations: [ PeopleDetailComponent ],
       providers: [
+        Store,
+        provideMockStore({ initialState }),
+        {
+          provide: Store,
+          useValue: storeMock,
+        },
         {
           provide: PeopleDetailService,
           useClass: PeopleDetailServiceMock,

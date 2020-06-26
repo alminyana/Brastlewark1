@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './header/header.module';
 
+import { StoreModule } from '@ngrx/store';
+import { reducer } from '../reducers/brastlewark.reducer';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,6 +21,9 @@ import { HeaderModule } from './header/header.module';
     AppRoutingModule,
     PeopleModule,
     HeaderModule,
+    StoreModule.forRoot({
+      list: reducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
