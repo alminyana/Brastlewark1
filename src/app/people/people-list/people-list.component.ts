@@ -25,7 +25,7 @@ export class PeopleListComponent implements OnInit {
     private store: Store<AppState>
   ) {
     this.filtered$ = this.store.select('list');
-    this.store.select('list').subscribe((data) => console.log(data) );
+    // this.store.select('list').subscribe((data) => console.log(data) );
   }
 
   async ngOnInit() {

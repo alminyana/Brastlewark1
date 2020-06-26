@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { BrastlewarkItem } from '../app/people/model/brastlewark-item.interface';
 import * as Actions from '../actions/brastlewark.actions';
 
-const initialState: BrastlewarkItem[] = [
+export const initialState: BrastlewarkItem[] = [
     {
         age: 2222222,
         friends: ['Cogwitz Chillwidget', 'Tinadette Chillbuster'],
