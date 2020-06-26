@@ -10,9 +10,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ### Tech summary
 
-Angular CLI: 7.3.10
-Node: 10.16.3
-OS: linux x64
+Angular CLI: 7.3.10 | 
+Node: 10.16.3 | 
+OS: linux x64 | 
 Angular: 7.2.16
 
 I have tryed to achieve all technical requirements except to cache the image url because I am out of time.
