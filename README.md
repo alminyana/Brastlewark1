@@ -15,11 +15,11 @@ Node: 10.16.3 |
 OS: linux x64 | 
 Angular: 7.2.16
 
-The main branch with all the changes is 'master' which is a copy of 'develop'. Develop is the branch where the feature/TD branches are merged.
+The main branch with all the changes is 'master' which is a copy of 'develop'. Develop is the branch where the feature/TD branches  are merged, so i didn't use epic branches for this project.
 
 I have tryed to achieve all technical requirements except to cache the image url.
 I didn't have experience working with Redux at my job position, so I implemented a basic structure of Redux in the app, passing the new state to the Store service with Actions and Reducers and subscribing the component to the Store in order to get the data to show.
-I faced several errors in Unit test when I added store service to components or services, the main problem is to mock the Store to run the spec.
+The list of specs is not large but they are all in green. 
 
 ## Code scaffolding
 
